@@ -1,5 +1,12 @@
+# python ignores
 __pycache__
 .history
 .hypothesis/
+.venv/
 build/
 reports/
+
+
+# js ignores
+.env
+node_modules/
