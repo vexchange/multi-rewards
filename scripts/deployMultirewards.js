@@ -4,6 +4,7 @@ const thorify = require("thorify").thorify;
 const Web3 = require("web3");
 const Multirewards = require(config.pathToMultirewardsJson);
 const assert = require('assert');
+const readlineSync = require('readline-sync');
 
 let network = null;
 let stakingTokenAddress = null;
@@ -15,9 +16,8 @@ if (process.argv.length < 4)
 } 
 else
 {
-    if (process.argv[2] == "mainnet") network = config.network.mainnet;
-    else if (process.argv[2] == "testnet") network = config.network.testnet;
-    else {
+    network = config.network[process.argv[2]];
+    if (network === undefined) {
         console.error("Invalid network specified");
         process.exit(1);
     }
@@ -65,6 +65,12 @@ deployMultirewards = async() =>
 
         console.log("Attempting to deploy contract:", config.pathToMultirewardsJson);
         console.log("For staking token:", stakingTokenAddress);
+
+        if (network.name == "mainnet")
+        {
+            let input = readlineSync.question("Confirm you want to deploy this on the MAINNET? (y/n) ");
+            if (input != 'y') process.exit(1);
+        }
 
         const multirewardsContract = new web3.eth.Contract(Multirewards.abi);
         await multirewardsContract.deploy({ 

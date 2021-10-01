@@ -5,6 +5,7 @@ const Web3 = require("web3");
 const Multirewards = require(config.pathToMultirewardsJson);
 const IERC20 = require(config.pathToIERC20Json);
 const assert = require('assert');
+const readlineSync = require('readline-sync');
 
 let network = null;
 let multirewardsAddress = null;
@@ -17,9 +18,8 @@ if (process.argv.length < 5)
 } 
 else
 {
-    if (process.argv[2] == "mainnet") network = config.network.mainnet;
-    else if (process.argv[2] == "testnet") network = config.network.testnet;
-    else {
+    network = config.network[process.argv[2]];
+    if (network === undefined) {
         console.error("Invalid network specified");
         process.exit(1);
     }
@@ -47,6 +47,12 @@ notifyRewardAmount = async() =>
 
         console.log("Attempting ERC20 approve for transfer, amount:", rewardAmount);        
 
+        if (network.name == "mainnet")
+        {
+            let input = readlineSync.question("Confirm you want to deploy this on the MAINNET? (y/n) ");
+            if (input != 'y') process.exit(1);
+        }
+        
         await vexERC20
                 .methods
                 .approve(multirewardsAddress,
