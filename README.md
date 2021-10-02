@@ -37,6 +37,16 @@ Keep the following in mind when using the `MultiReward` contract:
 * [ganache-cli](https://github.com/trufflesuite/ganache-cli) - tested with version [6.12.1](https://github.com/trufflesuite/ganache-cli/releases/tag/v6.12.1)
 * [brownie-token-tester](https://github.com/iamdefinitelyahuman/brownie-token-tester)
 
+## Environment Setup
+
+```
+npm run preinstall
+virtualenv .venv 
+source .venv/bin/activate
+pip install -r requirements.txt
+npm install
+```
+
 ## Testing
 
 The test suite is broadly split between [unit](tests/unitary) and [integration](tests/integration) tests.
@@ -55,10 +65,25 @@ brownie test tests/integration
 
 ## Deployment
 
-To deploy the contracts, first modify the [deployment script](scripts/deploy.py) to unlock the account you wish to deploy from. Then:
+To compile before deploying:
 
 ```bash
-brownie run deploy --network mainnet
+brownie compile
+```
+
+First step of deployment:
+```bash
+npm run deployMultirewards [mainnet|testnet]
+```
+
+We need to add the address of the token we are rewarding and the period. Assumed to be just VEX for now. Rewards are not live yet when this function is called.
+```bash
+npm run addReward [mainnet|testnet] [Multirewards address] [Duration in days]
+```
+
+Lastly, we need to `ERC20::approve` the amount to be rewarded and transfer it to the `Multirewards` contract address. Rewards are live once this function is called.
+```bash
+npm run notifyRewardAmount [mainnet|testnet] [Multirewards address] [Reward amount (excluding 18 decimals)]
 ```
 
 ## License

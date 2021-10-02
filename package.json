@@ -1,5 +1,32 @@
 {
-    "scripts": {
-      "preinstall": "npm i -g ganache-cli@6.12.1"
-    }
+  "scripts": {
+    "preinstall": "npm i -g ganache-cli@6.12.1",
+    "compile": "brownie compile",
+    "deployMultirewards": "node scripts/deployMultirewards",
+    "addReward": "node scripts/addReward",
+    "notifyRewardAmount": "node scripts/notifyRewardAmount"
+  },
+  "name": "multi-rewards",
+  "description": "A modified version of the [Synthetix](https://github.com/Synthetixio/synthetix) staking rewards contract, allowing for multiple rewards tokens. Designed for use with [Curve.fi](https://github.com/curvefi) liquidity gauges.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vexchange/multi-rewards.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vexchange/multi-rewards/issues"
+  },
+  "homepage": "https://github.com/vexchange/multi-rewards#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "readline-sync": "^1.4.10",
+    "thorify": "1.5.6",
+    "web3": "1.3.5"
   }
+}
