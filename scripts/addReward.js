@@ -3,7 +3,6 @@ const config = require("./deploymentConfig");
 const thorify = require("thorify").thorify;
 const Web3 = require("web3");
 const Multirewards = require(config.pathToMultirewardsJson);
-const assert = require('assert');
 const readlineSync = require('readline-sync');
 
 let network = null;
