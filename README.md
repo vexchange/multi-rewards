@@ -86,6 +86,14 @@ Lastly, we need to `ERC20::approve` the amount to be rewarded and transfer it to
 npm run notifyRewardAmount [mainnet|testnet] [Multirewards address] [Reward amount (excluding 18 decimals)]
 ```
 
+**Mainnet**
+| Contract       | Address                             |
+| ---            | ---                                 |
+| Multirewards   | 0x538f8890a383c44e59df4c7263d96ca8048da2c7  |
+| stakingToken (this is the VEX-VET pair address) | 0x39cd888a1583498AD30E716625AE1a00ff51286D  |
+
+
+
 ## License
 
 The smart contract within this repository is forked from [Synthetixio/synthetix](https://github.com/Synthetixio/synthetix/tree/master) which is licensed under the [MIT License](https://github.com/Synthetixio/synthetix/blob/develop/LICENSE).
