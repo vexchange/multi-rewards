@@ -9,13 +9,14 @@ const readlineSync = require('readline-sync');
 
 let network = null;
 let multirewardsAddress = null;
+let rewardTokenAddress = null;
 let rewardAmount = null;
 
-if (process.argv.length < 5) 
+if (process.argv.length < 6)
 {
-    console.error("Usage: node scripts/notifyRewardAmount [mainnet|testnet] [Multirewards address] [Reward amount (excluding 18 decimals)]");
+    console.error("Usage: node scripts/notifyRewardAmount [mainnet|testnet] [Multirewards address] [Reward token address] [Reward amount (excluding 18 decimals)]");
     process.exit(1);
-} 
+}
 else
 {
     network = config.network[process.argv[2]];
@@ -25,7 +26,8 @@ else
     }
 
     multirewardsAddress = process.argv[3];
-    rewardAmount = Web3.utils.toWei(process.argv[4]);
+    rewardTokenAddress = process.argv[4];
+    rewardAmount = Web3.utils.toWei(process.argv[5]);
 }
 
 const web3 = thorify(new Web3(), network.rpcUrl);
@@ -45,14 +47,14 @@ notifyRewardAmount = async() =>
         const multirewardsContract = new web3.eth.Contract(Multirewards.abi, multirewardsAddress);
         const vexERC20 = new web3.eth.Contract(IERC20.abi, network.vexAddress);
 
-        console.log("Attempting ERC20 approve for transfer, amount:", rewardAmount);        
+        console.log("Attempting ERC20 approve for transfer, amount:", rewardAmount);
 
         if (network.name == "mainnet")
         {
             let input = readlineSync.question("Confirm you want to deploy this on the MAINNET? (y/n) ");
             if (input != 'y') process.exit(1);
         }
-        
+
         await vexERC20
                 .methods
                 .approve(multirewardsAddress,
@@ -72,7 +74,7 @@ notifyRewardAmount = async() =>
         await multirewardsContract
                 .methods
                 .notifyRewardAmount(
-                    network.vexAddress, // Assuming we are only giving VEX for now
+                    rewardTokenAddress,
                     rewardAmount
                 )
         .send({ from: walletAddress })
@@ -81,7 +83,7 @@ notifyRewardAmount = async() =>
         });
 
         console.log("Transaction Hash:", transactionReceipt.transactionHash);
-    } 
+    }
     catch(error)
     {
         console.log("Deployment failed with:", error)
