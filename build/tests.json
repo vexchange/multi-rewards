@@ -1,0 +1,892 @@
+{
+  "contracts": {
+    "Address": "3232e80569be845f6931e64f6278c8c0c6be0329",
+    "Math": "3232e80569be845f6931e64f6278c8c0c6be0329",
+    "MultiRewards": "7e8dd15b815a5aee87e6d006ebee1ba697cc91cf",
+    "Owned": "537242ae6e3cd3e086068acf261457099b9b3566",
+    "SafeERC20": "3232e80569be845f6931e64f6278c8c0c6be0329",
+    "SafeMath": "3232e80569be845f6931e64f6278c8c0c6be0329"
+  },
+  "tests": {
+    "tests/unitary/test_add_rewards_unitary.py": {
+      "coverage": false,
+      "isolated": [
+        "Address",
+        "Math",
+        "MultiRewards",
+        "Owned",
+        "SafeERC20",
+        "SafeMath"
+      ],
+      "results": ".....",
+      "sha1": "50cd194fca42d924c77f8dd53724576ce34af104",
+      "txhash": [
+        "04417f4e8db4c29a0ddaca4923e8cb25562c0e33"
+      ]
+    },
+    "tests/unitary/test_construct_unitary.py": {
+      "coverage": false,
+      "isolated": [
+        "Address",
+        "Math",
+        "MultiRewards",
+        "Owned",
+        "SafeERC20",
+        "SafeMath"
+      ],
+      "results": "...............",
+      "sha1": "0043b53577b2e0a45b67d1b975b4b3de151bc8f6",
+      "txhash": [
+        "0c2d44f3f9d921cb5db0d35ee639eb9a3c56ef53",
+        "145b5812bca4d4cfc6fc83083114b02cf291b91d",
+        "1fb8daeba0aeb958aa43306cc90403649fc0303f",
+        "293148b11511815d0ed59d0cada86a1eb7af5870",
+        "2e5626d43adba0ceb7e02ddf08f9e54b9a525bdf",
+        "3ecd20ca3257e499426f83d16f56800185807a55",
+        "486964be84cdab06f824cf738c2e7bb839fa4a7f",
+        "a2d3506e4b0c2489160588728979ce309dceab5d",
+        "b1c65ca349e2b2b51c0ba9363db244da172a14f6",
+        "b6dfe1713fb1e272449e7c043e4e3a49cd3b72b9"
+      ]
+    },
+    "tests/unitary/test_exit_unitary.py": {
+      "coverage": false,
+      "isolated": [
+        "Address",
+        "Math",
+        "MultiRewards",
+        "Owned",
+        "SafeERC20",
+        "SafeMath"
+      ],
+      "results": "...",
+      "sha1": "f4cb2895f95f93f2d70304b2ffd8c5179157bc70",
+      "txhash": [
+        "01c2e0fc5acadc0cbc2c7ba0ba67c94a5862e9e6"
+      ]
+    },
+    "tests/unitary/test_get_reward_unitary.py": {
+      "coverage": false,
+      "isolated": [
+        "Address",
+        "Math",
+        "MultiRewards",
+        "Owned",
+        "SafeERC20",
+        "SafeMath"
+      ],
+      "results": "...........",
+      "sha1": "c40b27a5884f092c88948ef6bedf05013b60f1fa",
+      "txhash": []
+    },
+    "tests/unitary/test_recover_erc20_unitary.py": {
+      "coverage": false,
+      "isolated": [
+        "Address",
+        "Math",
+        "MultiRewards",
+        "Owned",
+        "SafeERC20",
+        "SafeMath"
+      ],
+      "results": ".............",
+      "sha1": "f229a9c2e1a301cac7975224136d91c06205fc89",
+      "txhash": [
+        "11bc493550c3dee9955e46c36342cd4294d52c05",
+        "4339425b6cbc10cb0d6461ebc2f28c9ca884c270",
+        "657c41f20bda20487e3f99a2e68e68023ddba4a7",
+        "67601746d2ae8c82d37335f4f1e1d1c86a6516d3",
+        "6b465dc13120b4425cb25226c39931a5d9f5220a",
+        "82c7646dc5fee7ac9c9abe234664854993877e5d",
+        "a38a2bf14179bd398aad49a21d49137a04aa8660",
+        "c068d0c7652a2f4739f87c012580be5115cada4b",
+        "c452d079c0088c9e9c9b3a08ce5a1558a6ba34e0"
+      ]
+    },
+    "tests/unitary/test_set_reward_duration.py": {
+      "coverage": false,
+      "isolated": [
+        "Address",
+        "Math",
+        "MultiRewards",
+        "Owned",
+        "SafeERC20",
+        "SafeMath"
+      ],
+      "results": "......",
+      "sha1": "2c66e88e23c7b53e62b32bed004407ab6c9c8baa",
+      "txhash": [
+        "2ea9de14df17468ed67900f6fad0f38bbcc17609",
+        "8176a7fe6ab990a2bf824ed25b27dbccb8a26039",
+        "85fad209253e18dfaa4345aa8cc45548ea65cbb4"
+      ]
+    },
+    "tests/unitary/test_set_reward_unitary.py": {
+      "coverage": false,
+      "isolated": [
+        "Address",
+        "Math",
+        "MultiRewards",
+        "Owned",
+        "SafeERC20",
+        "SafeMath"
+      ],
+      "results": ".................",
+      "sha1": "0ab8ef52fccbe9dce62866634212c2187bb18e81",
+      "txhash": [
+        "402e43020dadbd1e9cb3ef92319304db4ad45355",
+        "635bd83d103b81288e8326afceaf54e936039f1e",
+        "93150e2aa488f7340b947e66f07097e21b95a99c",
+        "a4b68c51411bd452f0a84b8f1f6ee308bfe1d698",
+        "c8ed06e5d873c8ea77043d2c078a8039b8b192b8",
+        "d58fd4a3fafbef3b6ad179a7f586173ffefc9214",
+        "e17236c136405dbbb0d235a132ad0e282e402926",
+        "ed826b6341f5138a2741824887070afa7390bdb7",
+        "f29a58ffce8e263c4afbf1b6d48ab3fb645b80ed"
+      ]
+    },
+    "tests/unitary/test_stake_unitary.py": {
+      "coverage": false,
+      "isolated": [
+        "Address",
+        "Math",
+        "MultiRewards",
+        "Owned",
+        "SafeERC20",
+        "SafeMath"
+      ],
+      "results": ".....",
+      "sha1": "b7f828d01c7900d831eecf2bade868d0375fd0fb",
+      "txhash": [
+        "2f94e5927b6574293edb1a735b6fb2e700fe4e3f",
+        "5f8bc89f98bb9fa1a16c881ed93566697c29dab0"
+      ]
+    },
+    "tests/unitary/test_supply_balance_unitary.py": {
+      "coverage": false,
+      "isolated": [
+        "Address",
+        "Math",
+        "MultiRewards",
+        "Owned",
+        "SafeERC20",
+        "SafeMath"
+      ],
+      "results": "...........",
+      "sha1": "ff7c08f887caddf44466654c1a9de79f0eb6b968",
+      "txhash": []
+    },
+    "tests/unitary/test_withdraw_unitary.py": {
+      "coverage": false,
+      "isolated": [
+        "Address",
+        "Math",
+        "MultiRewards",
+        "Owned",
+        "SafeERC20",
+        "SafeMath"
+      ],
+      "results": ".......",
+      "sha1": "b41039662910f6bd53ed38456792d555bf86d17e",
+      "txhash": [
+        "976f00db999aefdee440f938128ca624c6066dca",
+        "9df80037d4de85979ac9d3df21a99469dde0689a",
+        "f2d4e0397548bf6e1cbd074198f01b1bec4f0388"
+      ]
+    }
+  },
+  "tx": {
+    "01c2e0fc5acadc0cbc2c7ba0ba67c94a5862e9e6": {
+      "MultiRewards": {
+        "0": [
+          [
+            7,
+            13,
+            23,
+            50,
+            52,
+            55,
+            56,
+            58,
+            59,
+            61
+          ],
+          [
+            72,
+            82,
+            85
+          ],
+          [
+            84,
+            87,
+            88,
+            89
+          ]
+        ]
+      }
+    },
+    "04417f4e8db4c29a0ddaca4923e8cb25562c0e33": {
+      "MultiRewards": {
+        "0": [
+          [
+            54
+          ],
+          [
+            83
+          ],
+          []
+        ]
+      }
+    },
+    "0c2d44f3f9d921cb5db0d35ee639eb9a3c56ef53": {
+      "MultiRewards": {
+        "0": [
+          [
+            54
+          ],
+          [
+            83
+          ],
+          []
+        ]
+      }
+    },
+    "11bc493550c3dee9955e46c36342cd4294d52c05": {
+      "MultiRewards": {
+        "0": [
+          [
+            29,
+            30,
+            31,
+            54,
+            60,
+            63,
+            64,
+            66
+          ],
+          [
+            91
+          ],
+          [
+            75,
+            76,
+            83,
+            90
+          ]
+        ]
+      }
+    },
+    "145b5812bca4d4cfc6fc83083114b02cf291b91d": {
+      "MultiRewards": {
+        "0": [
+          [
+            54
+          ],
+          [
+            83
+          ],
+          []
+        ]
+      }
+    },
+    "1fb8daeba0aeb958aa43306cc90403649fc0303f": {
+      "MultiRewards": {
+        "0": [
+          [
+            54
+          ],
+          [
+            83
+          ],
+          []
+        ]
+      }
+    },
+    "293148b11511815d0ed59d0cada86a1eb7af5870": {
+      "MultiRewards": {
+        "0": [
+          [
+            54
+          ],
+          [
+            83
+          ],
+          []
+        ]
+      }
+    },
+    "2e5626d43adba0ceb7e02ddf08f9e54b9a525bdf": {
+      "MultiRewards": {
+        "0": [
+          [
+            54
+          ],
+          [
+            83
+          ],
+          []
+        ]
+      }
+    },
+    "2ea9de14df17468ed67900f6fad0f38bbcc17609": {
+      "MultiRewards": {
+        "0": [
+          [
+            8
+          ],
+          [
+            69
+          ],
+          []
+        ]
+      }
+    },
+    "2f94e5927b6574293edb1a735b6fb2e700fe4e3f": {
+      "MultiRewards": {
+        "0": [
+          [
+            33
+          ],
+          [
+            77
+          ],
+          []
+        ]
+      }
+    },
+    "3ecd20ca3257e499426f83d16f56800185807a55": {
+      "MultiRewards": {
+        "0": [
+          [
+            25
+          ],
+          [
+            74
+          ],
+          []
+        ]
+      }
+    },
+    "402e43020dadbd1e9cb3ef92319304db4ad45355": {
+      "MultiRewards": {
+        "0": [
+          [
+            23,
+            38,
+            39,
+            52,
+            61,
+            62,
+            63,
+            64,
+            66
+          ],
+          [
+            82,
+            89,
+            91
+          ],
+          [
+            79,
+            90
+          ]
+        ]
+      }
+    },
+    "4339425b6cbc10cb0d6461ebc2f28c9ca884c270": {
+      "MultiRewards": {
+        "0": [
+          [
+            54
+          ],
+          [
+            83
+          ],
+          []
+        ]
+      }
+    },
+    "486964be84cdab06f824cf738c2e7bb839fa4a7f": {
+      "MultiRewards": {
+        "0": [
+          [
+            54
+          ],
+          [
+            83
+          ],
+          []
+        ]
+      }
+    },
+    "5f8bc89f98bb9fa1a16c881ed93566697c29dab0": {
+      "MultiRewards": {
+        "0": [
+          [
+            7,
+            23,
+            33,
+            34,
+            35,
+            36,
+            52,
+            55,
+            56,
+            58,
+            59,
+            61,
+            62,
+            63,
+            64,
+            66
+          ],
+          [
+            82,
+            85,
+            89,
+            91
+          ],
+          [
+            77,
+            84,
+            87,
+            88,
+            90
+          ]
+        ]
+      }
+    },
+    "635bd83d103b81288e8326afceaf54e936039f1e": {
+      "MultiRewards": {
+        "0": [
+          [
+            46,
+            54
+          ],
+          [
+            81
+          ],
+          [
+            83
+          ]
+        ]
+      }
+    },
+    "657c41f20bda20487e3f99a2e68e68023ddba4a7": {
+      "MultiRewards": {
+        "0": [
+          [
+            29,
+            30,
+            31,
+            54,
+            60,
+            63,
+            66
+          ],
+          [
+            90
+          ],
+          [
+            75,
+            76,
+            83
+          ]
+        ]
+      }
+    },
+    "67601746d2ae8c82d37335f4f1e1d1c86a6516d3": {
+      "MultiRewards": {
+        "0": [
+          [
+            29,
+            30,
+            54
+          ],
+          [
+            76
+          ],
+          [
+            75,
+            83
+          ]
+        ]
+      }
+    },
+    "6b465dc13120b4425cb25226c39931a5d9f5220a": {
+      "MultiRewards": {
+        "0": [
+          [
+            54
+          ],
+          [
+            83
+          ],
+          []
+        ]
+      }
+    },
+    "8176a7fe6ab990a2bf824ed25b27dbccb8a26039": {
+      "MultiRewards": {
+        "0": [
+          [
+            8,
+            9
+          ],
+          [
+            70
+          ],
+          [
+            69
+          ]
+        ]
+      }
+    },
+    "82c7646dc5fee7ac9c9abe234664854993877e5d": {
+      "MultiRewards": {
+        "0": [
+          [
+            54
+          ],
+          [
+            83
+          ],
+          []
+        ]
+      }
+    },
+    "85fad209253e18dfaa4345aa8cc45548ea65cbb4": {
+      "MultiRewards": {
+        "0": [
+          [
+            8,
+            9
+          ],
+          [
+            70
+          ],
+          [
+            69
+          ]
+        ]
+      }
+    },
+    "93150e2aa488f7340b947e66f07097e21b95a99c": {
+      "MultiRewards": {
+        "0": [
+          [
+            8
+          ],
+          [
+            69
+          ],
+          []
+        ]
+      }
+    },
+    "976f00db999aefdee440f938128ca624c6066dca": {
+      "MultiRewards": {
+        "0": [
+          [
+            7,
+            13,
+            14,
+            23,
+            52,
+            55,
+            56,
+            58,
+            59,
+            61
+          ],
+          [
+            82,
+            84,
+            85,
+            89
+          ],
+          [
+            72,
+            84,
+            87,
+            88,
+            89
+          ]
+        ]
+      }
+    },
+    "9df80037d4de85979ac9d3df21a99469dde0689a": {
+      "MultiRewards": {
+        "0": [
+          [
+            7,
+            13,
+            14,
+            15,
+            23,
+            53,
+            55,
+            56,
+            57,
+            58,
+            59,
+            61
+          ],
+          [
+            84,
+            85,
+            89
+          ],
+          [
+            72,
+            82,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89
+          ]
+        ]
+      }
+    },
+    "a2d3506e4b0c2489160588728979ce309dceab5d": {
+      "MultiRewards": {
+        "0": [
+          [
+            54
+          ],
+          [
+            83
+          ],
+          []
+        ]
+      }
+    },
+    "a38a2bf14179bd398aad49a21d49137a04aa8660": {
+      "MultiRewards": {
+        "0": [
+          [
+            29,
+            54
+          ],
+          [
+            75
+          ],
+          [
+            83
+          ]
+        ]
+      }
+    },
+    "a4b68c51411bd452f0a84b8f1f6ee308bfe1d698": {
+      "MultiRewards": {
+        "0": [
+          [
+            23,
+            38,
+            52,
+            61
+          ],
+          [
+            79,
+            82,
+            89
+          ],
+          []
+        ]
+      }
+    },
+    "b1c65ca349e2b2b51c0ba9363db244da172a14f6": {
+      "MultiRewards": {
+        "0": [
+          [
+            54
+          ],
+          [
+            83
+          ],
+          []
+        ]
+      }
+    },
+    "b6dfe1713fb1e272449e7c043e4e3a49cd3b72b9": {
+      "MultiRewards": {
+        "0": [
+          [
+            54
+          ],
+          [
+            83
+          ],
+          []
+        ]
+      }
+    },
+    "c068d0c7652a2f4739f87c012580be5115cada4b": {
+      "MultiRewards": {
+        "0": [
+          [
+            29,
+            30,
+            31,
+            54,
+            60,
+            63,
+            66
+          ],
+          [
+            90
+          ],
+          [
+            75,
+            76,
+            83
+          ]
+        ]
+      }
+    },
+    "c452d079c0088c9e9c9b3a08ce5a1558a6ba34e0": {
+      "MultiRewards": {
+        "0": [
+          [
+            29,
+            30,
+            54
+          ],
+          [
+            76
+          ],
+          [
+            75,
+            83
+          ]
+        ]
+      }
+    },
+    "c8ed06e5d873c8ea77043d2c078a8039b8b192b8": {
+      "MultiRewards": {
+        "0": [
+          [
+            23,
+            38,
+            52,
+            61
+          ],
+          [
+            79,
+            82,
+            89
+          ],
+          []
+        ]
+      }
+    },
+    "d58fd4a3fafbef3b6ad179a7f586173ffefc9214": {
+      "MultiRewards": {
+        "0": [
+          [
+            23,
+            38,
+            52,
+            61
+          ],
+          [
+            79,
+            82,
+            89
+          ],
+          []
+        ]
+      }
+    },
+    "e17236c136405dbbb0d235a132ad0e282e402926": {
+      "MultiRewards": {
+        "0": [
+          [
+            23,
+            38,
+            52,
+            61
+          ],
+          [
+            79,
+            82,
+            89
+          ],
+          []
+        ]
+      }
+    },
+    "ed826b6341f5138a2741824887070afa7390bdb7": {
+      "MultiRewards": {
+        "0": [
+          [
+            8,
+            9,
+            10
+          ],
+          [
+            71
+          ],
+          [
+            69,
+            70
+          ]
+        ]
+      }
+    },
+    "f29a58ffce8e263c4afbf1b6d48ab3fb645b80ed": {
+      "MultiRewards": {
+        "0": [
+          [
+            23,
+            38,
+            52,
+            61
+          ],
+          [
+            79,
+            82,
+            89
+          ],
+          []
+        ]
+      }
+    },
+    "f2d4e0397548bf6e1cbd074198f01b1bec4f0388": {
+      "MultiRewards": {
+        "0": [
+          [
+            7,
+            13,
+            14,
+            23,
+            53,
+            55,
+            56,
+            57,
+            58,
+            59,
+            61
+          ],
+          [
+            84,
+            85,
+            89
+          ],
+          [
+            72,
+            82,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89
+          ]
+        ]
+      }
+    }
+  }
+}
