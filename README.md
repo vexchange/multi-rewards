@@ -71,19 +71,26 @@ To compile before deploying:
 brownie compile
 ```
 
+To set up private key of account for deployment: 
+```
+cp .env.sample .env
+vi .env
+```
+
+
 First step of deployment:
 ```bash
-npm run deployMultirewards [mainnet|testnet]
+npm run deployMultirewards [mainnet|testnet] [stakingToken address]
 ```
 
 We need to add the address of the token we are rewarding and the period. Assumed to be just VEX for now. Rewards are not live yet when this function is called.
 ```bash
-npm run addReward [mainnet|testnet] [Multirewards address] [Duration in days]
+npm run addReward [mainnet|testnet] [Multirewards address] [Reward token address] [Duration in days]
 ```
 
 Lastly, we need to `ERC20::approve` the amount to be rewarded and transfer it to the `Multirewards` contract address. Rewards are live once this function is called.
 ```bash
-npm run notifyRewardAmount [mainnet|testnet] [Multirewards address] [Reward amount (excluding 18 decimals)]
+npm run notifyRewardAmount [mainnet|testnet] [Multirewards address] [Reward token address] [Reward amount (excluding 18 decimals)]
 ```
 
 **Mainnet**
