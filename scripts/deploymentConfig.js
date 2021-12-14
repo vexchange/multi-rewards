@@ -5,13 +5,11 @@ module.exports = {
     network: {
         mainnet: {
             name: "mainnet",
-            rpcUrl: "http://mainnet02.vechain.fi.blockorder.net",
-            vexAddress: "0x0BD802635eb9cEB3fCBe60470D2857B86841aab6"
+            rpcUrl: "http://mainnet02.vechain.fi.blockorder.net"
         },
         testnet: {
             name: "testnet",
-            rpcUrl: "http://testnet02.vechain.fi.blockorder.net",
-            vexAddress: "0x377b467867CE906D14ea2bA610ED7553FE1Cd459"
+            rpcUrl: "http://testnet02.vechain.fi.blockorder.net"
         }
     },
     pathToMultirewardsJson: "../build/contracts/MultiRewards.json",
