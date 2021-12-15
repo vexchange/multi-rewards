@@ -85,7 +85,7 @@ npm run deployMultirewards [mainnet|testnet] [stakingToken address]
 
 We need to add the address of the token we are rewarding and the period. Assumed to be just VEX for now. Rewards are not live yet when this function is called.
 ```bash
-npm run addReward [mainnet|testnet] [Multirewards address] [Reward token address] [Duration in days]
+npm run addReward [mainnet|testnet] [Multirewards address] [Reward distributor address] [Reward token address] [Duration in days]
 ```
 
 Lastly, we need to `ERC20::approve` the amount to be rewarded and transfer it to the `Multirewards` contract address. Rewards are live once this function is called.
