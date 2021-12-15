@@ -45,7 +45,7 @@ notifyRewardAmount = async() =>
     {
         let transactionReceipt = null;
         const multirewardsContract = new web3.eth.Contract(Multirewards.abi, multirewardsAddress);
-        const vexERC20 = new web3.eth.Contract(IERC20.abi, rewardTokenAddress);
+        const rewardTokenContract = new web3.eth.Contract(IERC20.abi, rewardTokenAddress);
 
         console.log("Attempting ERC20 approve for transfer, amount:", rewardAmount);
 
@@ -55,7 +55,7 @@ notifyRewardAmount = async() =>
             if (input != 'y') process.exit(1);
         }
 
-        await vexERC20
+        await rewardTokenContract
                 .methods
                 .approve(multirewardsAddress,
                          rewardAmount)
