@@ -7,12 +7,13 @@ const readlineSync = require('readline-sync');
 
 let network = null;
 let multirewardsAddress = null;
+let distributorAddress = null;
 let rewardTokenAddress = null;
 let duration = null;
 
-if (process.argv.length < 6)
+if (process.argv.length < 7)
 {
-    console.error("Usage: node scripts/addReward [mainnet|testnet] [Multirewards address] [Reward token address] [Duration in days]");
+    console.error("Usage: node scripts/addReward [mainnet|testnet] [Multirewards address] [Reward distributor address] [Reward token address] [Duration in days]");
     process.exit(1);
 }
 else
@@ -24,8 +25,9 @@ else
     }
 
     multirewardsAddress = process.argv[3];
-    rewardTokenAddress = process.argv[4];
-    duration = parseInt(process.argv[5]) * 86400;
+    distributorAddress = process.argv[4]
+    rewardTokenAddress = process.argv[5];
+    duration = parseInt(process.argv[6]) * 86400;
 }
 
 const web3 = thorify(new Web3(), network.rpcUrl);
@@ -61,7 +63,7 @@ addReward = async() =>
                 .methods
                 .addReward(
                     rewardTokenAddress,
-                    walletAddress, // Assuming owner to be the distributor
+                    distributorAddress,
                     duration
                 )
         .send({ from: walletAddress })
