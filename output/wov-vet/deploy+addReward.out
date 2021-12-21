@@ -1,0 +1,32 @@
+oliver@oliver-xps2021 ~/g/g/v/multi-rewards (master)> npm run deployMultirewards mainnet 0xD86bed355d9d6A4c951e96755Dd0c3cf004d6CD0
+
+> multi-rewards@1.0.0 deployMultirewards
+> node scripts/deployMultirewards "mainnet" "0xD86bed355d9d6A4c951e96755Dd0c3cf004d6CD0"
+
+Using wallet address: 0x133720c677ac960Fd6692457233D2CeEA3754529
+Using RPC: http://mainnet02.vechain.fi.blockorder.net
+Attempting to deploy contract: ../build/contracts/MultiRewards.json
+For staking token: 0xD86bed355d9d6A4c951e96755Dd0c3cf004d6CD0
+Confirm you want to deploy this on the MAINNET? (y/n) y
+Transaction Hash: 0xf73bec3880c0dc028f1f8546f1cf06ce2c825e744ac502f4b0956fe16b46a54d
+Contract Successfully deployed at address: 0xa8d1a1c88329320234581e203474fe19b99473d3
+Renouncing Mastership
+Mastership successfully renounced, txid:  0xdd40ef1209a394786304b9b2cdab300094643e970775a90a9c34e0f54f843fec
+oliver@oliver-xps2021 ~/g/g/v/multi-rewards (master)> g status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+oliver@oliver-xps2021 ~/g/g/v/multi-rewards (master)> npm run addReward mainnet 0xa8d1a1c88329320234581e203474fe19b99473d3 0x07e4c5c5FE57D5B8229eE765b5212671C6259e08 0x170F4BA8e7ACF6510f55dB26047C83D13498AF8A 30
+
+> multi-rewards@1.0.0 addReward
+> node scripts/addReward "mainnet" "0xa8d1a1c88329320234581e203474fe19b99473d3" "0x07e4c5c5FE57D5B8229eE765b5212671C6259e08" "0x170F4BA8e7ACF6510f55dB26047C83D13498AF8A" "30"
+
+Using wallet address: 0x133720c677ac960Fd6692457233D2CeEA3754529
+Using RPC: http://mainnet02.vechain.fi.blockorder.net
+Attempting to add reward for multireward address: 0xa8d1a1c88329320234581e203474fe19b99473d3
+For staking token: 0xD86bed355d9d6A4c951e96755Dd0c3cf004d6CD0
+For a duration of: 2592000 seconds
+Confirm you want to deploy this on the MAINNET? (y/n) y
+Transaction Hash: 0x1155e9f68d91b7a8ca39eff76a20652e8236a07f889f1cbb55abe8f1616a02d8
+
