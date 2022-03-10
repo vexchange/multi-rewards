@@ -1,0 +1,11 @@
+> multi-rewards@1.0.0 notifyRewardAmount
+> node scripts/notifyRewardAmount "mainnet" "0x538f8890a383c44e59df4c7263d96ca8048da2c7" "0x0BD802635eb9cEB3fCBe60470D2857B86841aab6" "408960"
+
+Using wallet address: 0x133720c677ac960Fd6692457233D2CeEA3754529
+Using RPC: http://mainnet02.vechain.fi.blockorder.net
+Attempting ERC20 approve for transfer, amount: 408960000000000000000000
+Confirm you want to deploy this on the MAINNET? (y/n) y
+Approve successful, tx hash: 0x32c0a091290b6b3be7d6cd77c2ab2b9ab4c160ac79c299a63567c26477f01899
+Attempting notifyRewardAmount for multireward address: 0x538f8890a383c44e59df4c7263d96ca8048da2c7
+For staking token: 0x39cd888a1583498AD30E716625AE1a00ff51286D
+Transaction Hash: 0x2a113d34594ff35dc42e994e70836c340531ba484c3ed4f18e89b8332266e950
