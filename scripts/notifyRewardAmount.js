@@ -51,7 +51,7 @@ notifyRewardAmount = async() =>
 
         if (network.name == "mainnet")
         {
-            let input = readlineSync.question("Confirm you want to deploy this on the MAINNET? (y/n) ");
+            let input = readlineSync.question("Confirm you want to execute this on the MAINNET? (y/n) ");
             if (input != 'y') process.exit(1);
         }
 
@@ -62,7 +62,7 @@ notifyRewardAmount = async() =>
                 .send({ from: walletAddress })
                 .on("receipt", (receipt) => {
                     transactionReceipt = receipt;
-                });;
+                });
 
         console.log("Approve successful, tx hash:", transactionReceipt.transactionHash);
         console.log("Attempting notifyRewardAmount for multireward address:", multirewardsAddress);
@@ -86,7 +86,7 @@ notifyRewardAmount = async() =>
     }
     catch(error)
     {
-        console.log("Deployment failed with:", error)
+        console.log("Execution failed with:", error)
     }
 }
 
