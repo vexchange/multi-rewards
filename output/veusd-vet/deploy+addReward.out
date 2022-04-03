@@ -1,0 +1,25 @@
+> multi-rewards@1.0.0 deployMultirewards
+> node scripts/deployMultirewards "mainnet" "0x25491130A43d43AB0951d66CdF7ddaC7B1dB681b"
+
+Using wallet address: 0x2ae17D796447B5aBBaB71F3609A89de52225D196
+Using RPC: http://mainnet02.vechain.fi.blockorder.net
+Attempting to deploy contract: ../build/contracts/MultiRewards.json
+For staking token: 0x25491130A43d43AB0951d66CdF7ddaC7B1dB681b
+Confirm you want to deploy this on the MAINNET? (y/n) y
+Transaction Hash: 0xbea7ab2c632afda56fe435d01607f35b117effdbb94450a8be44ff6b73b4c953
+Contract Successfully deployed at address: 0xf1be58861b4bcacd6c7d026ba3de994361f5d3aa
+Renouncing Mastership
+Mastership successfully renounced, txid:  0xe078fcd4382bf7bc1c8db32b13794badaa4400ddb3933a441f58daf928f4284d
+
+> multi-rewards@1.0.0 addReward
+> node scripts/addReward "mainnet" "0xf1be58861b4bcacd6c7d026ba3de994361f5d3aa" "0x2ae17D796447B5aBBaB71F3609A89de52225D196" "0x0BD802635eb9cEB3fCBe60470D2857B86841aab6" "14"
+
+Using wallet address: 0x2ae17D796447B5aBBaB71F3609A89de52225D196
+Using RPC: http://mainnet02.vechain.fi.blockorder.net
+Attempting to add reward for multireward address: 0xf1be58861b4bcacd6c7d026ba3de994361f5d3aa
+For staking token: 0x25491130A43d43AB0951d66CdF7ddaC7B1dB681b
+For a duration of: 1209600 seconds
+Confirm you want to deploy this on the MAINNET? (y/n) y
+Transaction Hash: 0x86c4642b87addf8ba260f957a5b22bebed59963cfffc31fff97baa9dccc0d1b2
+
+

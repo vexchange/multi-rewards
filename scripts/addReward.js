@@ -55,7 +55,7 @@ addReward = async() =>
 
         if (network.name == "mainnet")
         {
-            let input = readlineSync.question("Confirm you want to deploy this on the MAINNET? (y/n) ");
+            let input = readlineSync.question("Confirm you want to execute this on the MAINNET? (y/n) ");
             if (input != 'y') process.exit(1);
         }
 
@@ -75,7 +75,7 @@ addReward = async() =>
     }
     catch(error)
     {
-        console.log("Deployment failed with:", error)
+        console.log("Execution failed with:", error)
     }
 }
 
