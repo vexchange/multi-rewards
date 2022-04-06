@@ -4,6 +4,7 @@ module.exports = {
     privateKey: process.env.PRIVATE_KEY,
     network: {
         mainnet: {
+            address: "0x538f8890a383c44e59df4c7263d96ca8048da2c7",
             name: "mainnet",
             rpcUrl: "http://mainnet02.vechain.fi.blockorder.net"
         },
