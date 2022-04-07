@@ -1,0 +1,12 @@
+> multi-rewards@1.0.0 deployMultirewards
+> node scripts/deployMultirewards.js mainnet 0x3A778a7B141e846c53D03BA4c1899326eE0D0c14
+
+Using wallet address: 0xE527972DD80970bb90977879658FB83aD568Bb28
+Using RPC: http://mainnet02.vechain.fi.blockorder.net
+Attempting to deploy contract: ../build/contracts/MultiRewards.json
+For staking token: 0x3A778a7B141e846c53D03BA4c1899326eE0D0c14
+Confirm you want to deploy this on the MAINNET? (y/n) y
+Transaction Hash: 0xeca3d1f4db21481e276ac64a50337cc2722589f99739f3b377370e442608aa69
+Contract Successfully deployed at address: 0x40b0972f74d44da2b7a5a5817f81d38e293bce9f
+Renouncing Mastership
+Mastership successfully renounced, txid:  0x3ebeff5ad16dfd97d45369faff8db28f9ad444a42a0bcac5c3f1c18b2cb4e4bb
