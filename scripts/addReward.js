@@ -13,7 +13,7 @@ let duration = null;
 
 if (process.argv.length < 7)
 {
-    console.error("Usage: node scripts/addReward [mainnet|testnet] [Multirewards address] [Reward distributor address] [Reward token address] [Duration in days]");
+    console.error("Usage: node scripts/addReward [mainnet|testnet] [Multirewards address] [Reward distributor address] [Reward token address] [Duration in seconds]");
     process.exit(1);
 }
 else
@@ -27,7 +27,7 @@ else
     multirewardsAddress = process.argv[3];
     distributorAddress = process.argv[4]
     rewardTokenAddress = process.argv[5];
-    duration = parseInt(process.argv[6]) * 86400;
+    duration = parseInt(process.argv[6]);
 }
 
 const web3 = thorify(new Web3(), network.rpcUrl);
