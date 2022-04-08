@@ -8,3 +8,14 @@ For staking token: 0x3A778a7B141e846c53D03BA4c1899326eE0D0c14
 For a duration of: 33180 seconds
 Confirm you want to execute this on the MAINNET? (y/n) y
 Transaction Hash: 0xeb911b431f0b95c9ca1f2a65306d39cb456c9df5be471a89092d4d5e5a938a25
+
+> multi-rewards@1.0.0 addReward
+> npm run addReward mainnet 0x40b0972f74d44da2b7a5a5817f81d38e293bce9f 0xE527972DD80970bb90977879658FB83aD568Bb28 0x0BD802635eb9cEB3fCBe60470D2857B86841aab6 33180
+
+Using wallet address: 0xE527972DD80970bb90977879658FB83aD568Bb28
+Using RPC: http://mainnet02.vechain.fi.blockorder.net
+Attempting to add reward for multireward address: 0x40b0972f74d44da2b7a5a5817f81d38e293bce9f
+For staking token: 0x3A778a7B141e846c53D03BA4c1899326eE0D0c14
+For a duration of: 33180 seconds
+Confirm you want to execute this on the MAINNET? (y/n) y
+Transaction Hash: 0x738788ffab6325b80f1adddc211435d80cb90caaa0cbeed6c4af8741a384ebc9
