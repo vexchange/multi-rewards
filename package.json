@@ -4,7 +4,8 @@
     "compile": "brownie compile",
     "deployMultirewards": "node scripts/deployMultirewards",
     "addReward": "node scripts/addReward",
-    "notifyRewardAmount": "node scripts/notifyRewardAmount"
+    "notifyRewardAmount": "node scripts/notifyRewardAmount",
+    "setRewardsDuration": "node scripts/setRewardsDuration"
   },
   "name": "multi-rewards",
   "description": "A modified version of the [Synthetix](https://github.com/Synthetixio/synthetix) staking rewards contract, allowing for multiple rewards tokens. Designed for use with [Curve.fi](https://github.com/curvefi) liquidity gauges.",
