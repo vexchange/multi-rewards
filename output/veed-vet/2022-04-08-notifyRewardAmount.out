@@ -9,3 +9,17 @@ Approve successful, tx hash: 0x654711145017a029be57dfb032b1fec5c98350f063a94d9c3
 Attempting notifyRewardAmount for multireward address: 0x40b0972f74d44da2b7a5a5817f81d38e293bce9f
 For staking token: 0x3A778a7B141e846c53D03BA4c1899326eE0D0c14
 Transaction Hash: 0xb3fa1f157141d5a59b7d459945ddeddac0701a730c36d5a7657c9cce70b09ad6
+
+8 April 2022 1600 UTC+0
+
+> multi-rewards@1.0.0 notifyRewardAmount
+> node scripts/notifyRewardAmount "mainnet" "0x40b0972f74d44da2b7a5a5817f81d38e293bce9f" "0x0BD802635eb9cEB3fCBe60470D2857B86841aab6" "3722"
+
+Using wallet address: 0xE527972DD80970bb90977879658FB83aD568Bb28
+Using RPC: http://mainnet02.vechain.fi.blockorder.net
+Attempting ERC20 approve for transfer, amount: 3722000000000000000000
+Confirm you want to execute this on the MAINNET? (y/n) y
+Approve successful, tx hash: 0x0cbc966a546b36cda8115d5a25c0a650e4c45f1ba945d3959db478683b8e82e0
+Attempting notifyRewardAmount for multireward address: 0x40b0972f74d44da2b7a5a5817f81d38e293bce9f
+For staking token: 0x3A778a7B141e846c53D03BA4c1899326eE0D0c14
+Transaction Hash: 0xb07ea42cdb00f90d5bcc54629df790009928770bca4b4936109b077c5b101c04
