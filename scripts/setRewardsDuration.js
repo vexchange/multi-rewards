@@ -24,8 +24,8 @@ if (!network || !multiRewards || !rewardsToken || !duration) {
 
   console.log("Using wallet address:", wallet.keys[0].address);
 
-  const net = new SimpleNet(config.network[network].rpcUrl, wallet);
-  const driver = await Driver.connect(net);
+  const net = new SimpleNet(config.network[network].rpcUrl);
+  const driver = await Driver.connect(net, wallet);
   const connex = new Framework(driver);
 
   const setRewardsDurationABI = find(Multirewards.abi, { name: 'setRewardsDuration' });
@@ -43,5 +43,3 @@ if (!network || !multiRewards || !rewardsToken || !duration) {
 
   process.exit();
 })();
-
-
