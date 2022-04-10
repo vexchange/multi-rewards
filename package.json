@@ -6,6 +6,7 @@
     "addReward": "node scripts/addReward",
     "notifyRewardAmount": "node scripts/notifyRewardAmount",
     "setRewardsDuration": "node scripts/setRewardsDuration",
+    "setRewardsDistributor": "node scripts/setRewardsDistributor",
     "nominateNewOwner": "node scripts/nominateNewOwner",
     "acceptOwnership": "node scripts/acceptOwnership"
   },
