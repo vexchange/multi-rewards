@@ -15,6 +15,10 @@ if (!network || !multiRewards || !owner) {
   console.error("Usage: node scripts/nominateNewOwner [mainnet|testnet] [Multirewards address] [Owner address]");
 
   process.exit();
+} else if (network ==='mainnet') {
+  const input = readlineSync.question("Confirm you want to execute this on the MAINNET? (y/n) ");
+
+  if (input != 'y') process.exit(1);
 }
 
 (async() => {

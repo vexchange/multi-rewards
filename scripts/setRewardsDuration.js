@@ -2,6 +2,7 @@
 const ConnexDriver = require('@vechain/connex-driver');
 const Framework = require("@vechain/connex-framework").Framework;
 const find = require('lodash/find');
+const readlineSync = require('readline-sync');
 
 const config = require('./deploymentConfig');
 const Multirewards = require('../build/contracts/MultiRewards.json');
@@ -15,6 +16,10 @@ if (!network || !multiRewards || !rewardsToken || !duration) {
   console.error("Usage: node scripts/setRewardsDuration [mainnet|testnet] [Multirewards address] [Reward token address] [Duration in seconds]");
 
   process.exit();
+} else if (network ==='mainnet') {
+  const input = readlineSync.question("Confirm you want to execute this on the MAINNET? (y/n) ");
+
+  if (input != 'y') process.exit(1);
 }
 
 (async() => {
@@ -36,7 +41,7 @@ if (!network || !multiRewards || !rewardsToken || !duration) {
   try {
     const result = await connex.vendor.sign('tx', [{ ...clause }]).request();
 
-    console.log("Transaction Hash:", result.transactionHash);
+    console.log("Result: ", result);
   } catch(error) {
     console.error(error);
   }
