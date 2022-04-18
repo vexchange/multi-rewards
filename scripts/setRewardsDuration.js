@@ -16,10 +16,6 @@ if (!network || !multiRewards || !rewardsToken || !duration) {
   console.error("Usage: node scripts/setRewardsDuration [mainnet|testnet] [Multirewards address] [Reward token address] [Duration in seconds]");
 
   process.exit();
-} else if (network ==='mainnet') {
-  const input = readlineSync.question("Confirm you want to execute this on the MAINNET? (y/n) ");
-
-  if (input != 'y') process.exit(1);
 }
 
 (async() => {
@@ -37,6 +33,12 @@ if (!network || !multiRewards || !rewardsToken || !duration) {
   const setRewardsMethod = connex.thor.account(multiRewards).method(setRewardsDurationABI);
 
   const clause = setRewardsMethod.asClause(rewardsToken, duration);
+
+  if (network ==='mainnet') {
+    const input = readlineSync.question("Confirm you want to execute this on the MAINNET? (y/n) ");
+
+    if (input != 'y') process.exit(1);
+  }
 
   try {
     const result = await connex.vendor.sign('tx', [{ ...clause }]).request();
