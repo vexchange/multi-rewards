@@ -40,9 +40,15 @@ if (!network || !multiRewards) {
   }
 
   try {
-    const result = await connex.vendor.sign('tx', [{ ...clause }]).request();
+    const { txId } = await connex.vendor.sign('tx', [clause]).request();
+    const transaction = await connex.thor.transaction(txId).getReceipt()
 
-    console.log("Result: ", result);
+
+    if (transaction.reverted) {
+      console.log("tx was unsuccessful");
+    } else {
+      console.log("Accept ownership was succcessful");
+    }
   } catch(error) {
     console.error(error);
   }
