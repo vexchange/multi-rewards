@@ -8,7 +8,8 @@
     "setRewardsDuration": "node scripts/setRewardsDuration",
     "setRewardsDistributor": "node scripts/setRewardsDistributor",
     "nominateNewOwner": "node scripts/nominateNewOwner",
-    "acceptOwnership": "node scripts/acceptOwnership"
+    "acceptOwnership": "node scripts/acceptOwnership",
+    "refreshAllPools": "node scripts/refreshAllPools"
   },
   "name": "multi-rewards",
   "description": "A modified version of the [Synthetix](https://github.com/Synthetixio/synthetix) staking rewards contract, allowing for multiple rewards tokens. Designed for use with [Curve.fi](https://github.com/curvefi) liquidity gauges.",
@@ -30,6 +31,7 @@
   "dependencies": {
     "@vechain/connex-driver": "^2.0.8",
     "@vechain/connex-framework": "^2.0.8",
+    "dayjs": "^1.11.1",
     "dotenv": "^10.0.0",
     "lodash": "^4.17.21",
     "readline-sync": "^1.4.10",
