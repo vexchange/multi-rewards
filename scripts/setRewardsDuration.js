@@ -5,7 +5,13 @@ const readlineSync = require('readline-sync');
 
 const Multirewards = require('../build/contracts/MultiRewards.json');
 
-const setRewardsDuration = async (connex, network, multiRewards, rewardsToken, duration) => {
+const setRewardsDuration = async ({
+  connex,
+  duration,
+  multiRewards,
+  network,
+  rewardsToken,
+}) => {
   const setRewardsDurationABI = find(Multirewards.abi, { name: 'setRewardsDuration' });
   const setRewardsMethod = connex.thor.account(multiRewards).method(setRewardsDurationABI);
 
@@ -46,7 +52,14 @@ if (require.main === module) {
 
   (async() => {
     const connex = await Connex.create(network);
-    const result = await setRewardsDuration(connex, network, multiRewards, rewardsToken, duration);
+
+    const result = await setRewardsDuration({
+      connex,
+      duration,
+      multiRewards,
+      network,
+      rewardsToken,
+    });
 
     console.log(result)
   })();

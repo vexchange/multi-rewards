@@ -29,7 +29,7 @@ const notifyRewardAmount = async ({
   }
 
 
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     try {
       const approve = await connex.vendor.sign('tx', [approveClause]).request();
       const notifyRewardAmount = await connex.vendor.sign('tx', [notifyRewardAmountClause]).dependsOn(approve.txId).request();
