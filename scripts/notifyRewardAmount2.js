@@ -1,10 +1,11 @@
 // ES5 style
-const Connex = require('./utils/connex');
 const find = require('lodash/find');
 const readlineSync = require('readline-sync');
 
 const Multirewards = require('../build/contracts/MultiRewards.json');
 const IERC20 = require('../build/contracts/IERC20.json');
+
+const { getConnex } = require('./utils');
 
 const notifyRewardAmount = async ({
   connex,
@@ -60,7 +61,7 @@ if (require.main === module) {
   }
 
   (async() => {
-    const connex = await Connex.create(network);
+    const connex = await getConnex(network);
 
     const result = await notifyRewardAmount({
       connex,

@@ -1,21 +1,22 @@
 // ES5 style
-const Connex = require('./utils/connex');
 const find = require('lodash/find');
 const readlineSync = require('readline-sync');
 
 const Multirewards = require('../build/contracts/MultiRewards.json');
+
+const { getConnex } = require('./utils');
 
 const setRewardsDuration = async ({
   connex,
   duration,
   multiRewards,
   network,
-  rewardsToken,
+  rewardToken,
 }) => {
   const setRewardsDurationABI = find(Multirewards.abi, { name: 'setRewardsDuration' });
   const setRewardsMethod = connex.thor.account(multiRewards).method(setRewardsDurationABI);
 
-  const clause = setRewardsMethod.asClause(rewardsToken, duration);
+  const clause = setRewardsMethod.asClause(rewardToken, duration);
 
   if (require.main === module && network === 'mainnet') {
     const input = readlineSync.question("Confirm you want to execute this on the MAINNET? (y/n) ");
@@ -51,7 +52,7 @@ if (require.main === module) {
   }
 
   (async() => {
-    const connex = await Connex.create(network);
+    const connex = await getConnex(network);
 
     const result = await setRewardsDuration({
       connex,
