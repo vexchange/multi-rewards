@@ -3,13 +3,15 @@ const dayjs = require('dayjs');
 const ConnexDriver = require('@vechain/connex-driver');
 const Framework = require("@vechain/connex-framework").Framework;
 
-const sumBy = require('lodash/sumBy'); const find = require('lodash/find');
-const pools = require('../refreshAllPools/pools.json');
+const sumBy = require('lodash/sumBy');
+const find = require('lodash/find');
+
 
 const IERC20 = require('../../build/contracts/IERC20.json');
 
-const { DISTRIBUTOR, THIRTY_DAYS } = require('../../constants');
+const { DISTRIBUTOR, THIRTY_DAYS, REWARD_TOKEN } = require('../../constants');
 
+const pools = require('../refreshAllPools/pools.json');
 const config = require('../deploymentConfig');
 
 const { Driver, SimpleNet, SimpleWallet } = ConnexDriver;
@@ -44,9 +46,9 @@ const getRequiredBalance = percent => {
   return ethers.BigNumber.from(requiredBalance);
 }
 
-const getCurrentBalance = async (connex) => {
+const getCurrentVexBalance = async connex => {
   const abi = find(IERC20.abi, { name: 'balanceOf' });
-  const account = connex.thor.account('0x0BD802635eb9cEB3fCBe60470D2857B86841aab6');
+  const account = connex.thor.account(REWARD_TOKEN);
   const method = account.method(abi)
 
   const { decoded } = await method.call(DISTRIBUTOR);
@@ -57,7 +59,7 @@ const getCurrentBalance = async (connex) => {
 
 module.exports = {
   getConnex,
-  getCurrentBalance,
+  getCurrentVexBalance,
   getRequiredBalance,
   getTimeConstraints,
 };
