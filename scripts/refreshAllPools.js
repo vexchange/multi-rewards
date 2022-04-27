@@ -36,9 +36,13 @@ const poolCheck = async () => {
 
   // iterate through pools
   for (const pool of pools) {
-    const rewardAmount = Math.round(pool.monthlyRate / percent);
+    // todo: IF POOL_ACTIVE { SKIP POOL }
+    const rewardDuration = Math.round(duration);
+    const rewardAmount = Math.round(pool.monthlyRate * percent);
 
-    // we need duration and rewardAmount for each pool
+    // todo: set pool duration to `rewardduration`
+
+    // notify pool rewards 
     await notifyRewardAmount({
       connex,
       multiRewards: pool.address,
