@@ -12,7 +12,7 @@ const [network, multiRewards, rewardsToken, newRewardsDistributor] = process.arg
 
 // ensure we have appropriate arguments
 if (!network || !multiRewards || !rewardsToken || !newRewardsDistributor) {
-  console.error("Usage: node scripts/setRewardsDuration [mainnet|testnet] [Multirewards address] [Reward token address] [New rewardsDistributor address]");
+  console.error("Usage: node scripts/setRewardsDistributor [mainnet|testnet] [Multirewards address] [Reward token address] [New rewardsDistributor address]");
 
   process.exit();
 }
