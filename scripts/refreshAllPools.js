@@ -1,17 +1,20 @@
 // ES5 style
-const { DISTRIBUTOR, REWARD_TOKEN, POOLS } = require('../../constants');
+const ethers = require('ethers');
+const readlineSync = require('readline-sync');
 
-const { getConnex, getCurrentVexBalance, getRequiredBalance, getTimeConstraints } = require('../utils/')
+const { DISTRIBUTOR, REWARD_TOKEN, POOLS } = require('../constants');
 
-const notifyRewardAmount = require('../notifyRewardAmount2');
+const { getConnex, getCurrentVexBalance, getRequiredBalance, getTimeConstraints } = require('./utils/')
+
+const notifyRewardAmount = require('./notifyRewardAmount');
 
 const [network] = process.argv.slice(2);
 
-// ensure we have appropriate arguments
+// // ensure we have appropriate arguments
 if (!network) {
   console.error("Usage: node scripts/refreshAllPools [mainnet|testnet]");
 
-  process.exit();
+  process.exit(1);
 } else if (network ==='mainnet') {
   const input = readlineSync.question("Confirm you want to execute this on the MAINNET? (y/n) ");
 
@@ -35,15 +38,20 @@ const poolCheck = async () => {
   }
 
   // iterate through pools
-  for (const pool of pools) {
-    const rewardAmount = Math.round(pool.monthlyRate / percent);
+  for (const pool of POOLS) {
+    if (!pool.address) {
+      console.log('skipping: ', pool.pair);
+      continue;
+    };
+
+    const rewardAmount = (Math.round(pool.monthlyRate / percent)).toString();
 
     // we need duration and rewardAmount for each pool
     await notifyRewardAmount({
       connex,
       multiRewards: pool.address,
       network,
-      rewardAmount,
+      rewardAmount: ethers.utils.parseEther(rewardAmount).toString(),
       rewardToken: REWARD_TOKEN,
     });
   };
@@ -51,5 +59,4 @@ const poolCheck = async () => {
   process.exit(1)
 };
 
-
-poolCheck()
+poolCheck();

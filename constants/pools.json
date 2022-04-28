@@ -1,22 +1,47 @@
 [
   {
-    "pool": "vex-vet",
+    "pair": "vex-vet",
     "address": "0x538f8890a383c44e59df4c7263d96ca8048da2c7",
     "monthlyRate": 387460
   },
   {
-    "pool": "wov-vet",
+    "pair": "wov-vet",
     "address": "0xa8d1a1c88329320234581e203474fe19b99473d3",
     "monthlyRate": 3000
   },
   {
-    "pool": "veed-vet",
+    "pair": "veed-vet",
     "address": "0x40b0972f74d44da2b7a5a5817f81d38e293bce9f",
     "monthlyRate": 5000
   },
   {
-    "pool": "veusd-vet",
+    "pair": "veusd-vet",
     "address": "0xf1be58861b4bcacd6c7d026ba3de994361f5d3aa",
     "monthlyRate": 5000
+  },
+  {
+    "pair": "mvg-vet",
+    "address": "",
+    "monthlyRate": 2500
+  },
+  {
+    "pair": "sha-vet",
+    "address": "",
+    "monthlyRate": 2500
+  },
+  {
+    "pair": "hai-vet",
+    "address": "",
+    "monthlyRate": 2500
+  },
+  {
+    "pair": "oce-vet",
+    "address": "",
+    "monthlyRate": 1500
+  },
+  {
+    "pair": "jur-vet",
+    "address": "",
+    "monthlyRate": 1500
   }
 ]

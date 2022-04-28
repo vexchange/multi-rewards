@@ -9,9 +9,8 @@ const find = require('lodash/find');
 
 const IERC20 = require('../../build/contracts/IERC20.json');
 
-const { DISTRIBUTOR, THIRTY_DAYS, REWARD_TOKEN } = require('../../constants');
+const { DISTRIBUTOR, THIRTY_DAYS, REWARD_TOKEN, POOLS } = require('../../constants');
 
-const pools = require('../refreshAllPools/pools.json');
 const config = require('../deploymentConfig');
 
 const { Driver, SimpleNet, SimpleWallet } = ConnexDriver;
@@ -41,7 +40,7 @@ const getTimeConstraints = () => {
 }
 
 const getRequiredBalance = percent => {
-  const requiredBalance = Math.round(sumBy(pools, 'monthlyRate') / percent);
+  const requiredBalance = Math.round(sumBy(POOLS, 'monthlyRate') / percent);
 
   return ethers.BigNumber.from(requiredBalance);
 }
