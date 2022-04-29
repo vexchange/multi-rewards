@@ -1,18 +1,20 @@
 // ES5 style
 const ethers = require('ethers');
 const readlineSync = require('readline-sync');
+const consola = require('consola');
 
 const { DISTRIBUTOR, REWARD_TOKEN, POOLS } = require('../constants');
 
 const { getConnex, getCurrentVexBalance, getRequiredBalance, getTimeConstraints } = require('./utils/')
 
+const setRewardsDuration = require('./setRewardsDuration');
 const notifyRewardAmount = require('./notifyRewardAmount');
 
 const [network] = process.argv.slice(2);
 
 // // ensure we have appropriate arguments
 if (!network) {
-  console.error("Usage: node scripts/refreshAllPools [mainnet|testnet]");
+  consola.error("Usage: node scripts/refreshAllPools [mainnet|testnet]");
 
   process.exit(1);
 } else if (network ==='mainnet') {
@@ -25,34 +27,43 @@ const poolCheck = async () => {
   const connex = await getConnex(network);
 
   // get time constraints
-  const { percent } = getTimeConstraints();
+  const { duration, percent } = getTimeConstraints();
 
   // check balance of distributor
-  const requiredBalance = getRequiredBalance(percent);
-  const currentBalance = await getCurrentVexBalance(connex);
+  const currentBalance = await getCurrentVexBalance(connex, network);
+  const requiredBalance = getRequiredBalance(percent, network);
 
   if (currentBalance.lt(requiredBalance)) {
-    console.warn('Distributor does not have proper balance');
+    consola.error('Distributor does not have proper balance');
 
     process.exit(1);
   }
 
   // iterate through pools
-  for (const pool of POOLS) {
+  for (const pool of POOLS[network]) {
     if (!pool.address) {
-      console.log('skipping: ', pool.pair);
+      consola.info('skipping: ', pool.pair);
       continue;
     };
 
     const rewardAmount = (Math.round(pool.monthlyRate / percent)).toString();
 
-    // we need duration and rewardAmount for each pool
+    // await setRewardsDuration({
+    //   connex,
+    //   duration,
+    //   network,
+    //   pool,
+    //   rewardToken: REWARD_TOKEN[network],
+    // });
+    //
+    // await connex.thor.ticker().next()
+    //
     await notifyRewardAmount({
       connex,
-      multiRewards: pool.address,
       network,
+      pool,
       rewardAmount: ethers.utils.parseEther(rewardAmount).toString(),
-      rewardToken: REWARD_TOKEN,
+      rewardToken: REWARD_TOKEN[network],
     });
   };
 

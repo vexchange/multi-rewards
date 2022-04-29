@@ -1,6 +1,7 @@
 // ES5 style
 const find = require('lodash/find');
 const readlineSync = require('readline-sync');
+const consola = require('consola');
 const ethers = require('ethers');
 
 const Multirewards = require('../build/contracts/MultiRewards.json');
@@ -10,19 +11,18 @@ const { getConnex } = require('./utils');
 
 const notifyRewardAmount = async ({
   connex,
-  multiRewards,
+  pool,
   network,
   rewardAmount,
   rewardToken,
 }) => {
-  console.log(rewardAmount)
   const approveABI = find(IERC20.abi, { name: 'approve' });
   const approveMethod = connex.thor.account(rewardToken).method(approveABI);
 
   const notifyRewardAmountABI = find(Multirewards.abi, { name: 'notifyRewardAmount' });
-  const notifyRewardAmountMethod = connex.thor.account(multiRewards).method(notifyRewardAmountABI);
+  const notifyRewardAmountMethod = connex.thor.account(pool.address).method(notifyRewardAmountABI);
 
-  const approveClause = approveMethod.asClause(multiRewards, rewardAmount);
+  const approveClause = approveMethod.asClause(pool.address, rewardAmount);
   const notifyRewardAmountClause = notifyRewardAmountMethod.asClause(rewardToken, rewardAmount);
 
   if (require.main === module && network === 'mainnet') {
@@ -31,32 +31,54 @@ const notifyRewardAmount = async ({
     if (input != 'y') process.exit(1);
   }
 
+  consola.info(`--------------------- Notifying reward amount for: ${pool.pair} ---------------------`);
+  consola.info(`Reward token: ${rewardToken}`);
+  consola.info(`Reward amount: ${ethers.utils.formatEther(rewardAmount)}`);
+  consola.log(' ');
+
   return new Promise(async (resolve, reject) => {
     try {
+      consola.info('Approving amount...');
+
       const approve = await connex.vendor.sign('tx', [approveClause]).request();
+
+      consola.info('Transaction: ', approve.txid);
+      await connex.thor.ticker().next()
+
+      consola.log(' ');
+      consola.info('Notifying reward amount...');
+
       const notifyRewardAmount = await connex.vendor.sign('tx', [notifyRewardAmountClause]).dependsOn(approve.txid).request();
-      const transaction = await connex.thor.transaction(notifyRewardAmount.txid).getReceipt()
+
+      consola.info('Transaction: ', notifyRewardAmount.txid);
+      await connex.thor.ticker().next()
+
+      const transaction = await connex.thor.transaction(notifyRewardAmount.txid).getReceipt();
 
       if (transaction.reverted) {
-        console.log("tx was unsuccessful");
-        reject('tx was unsuccessful')
+        consola.error('Transaction was unsuccessful');
+
+        reject();
       } else {
-        console.log("Set rewards duration was succcessful");
-        resolve('Set rewards duration was succcessful')
+        consola.success('Successfully notified reward amount');
+        consola.log(' ');
+
+        resolve();
       }
     } catch(error) {
-      console.error(error);
-      reject(error);
+      consola.error(error);
+
+      reject();
     }
-  })
-}
+  });
+};
 
 // if called directly (from terminal)
 if (require.main === module) {
   const [network, multiRewards, rewardToken, rewardAmount] = process.argv.slice(2);
 
   if (!network || !multiRewards || !rewardToken || !rewardAmount) {
-    console.error("Usage: node scripts/notifyRewardAmount [mainnet|testnet] [Multirewards address] [Reward token address] [Reward amount (excluding 18 decimals)]");
+    consola.error("Usage: node scripts/notifyRewardAmount [mainnet|testnet] [Multirewards address] [Reward token address] [Reward amount (excluding 18 decimals)]");
 
     process.exit();
   }

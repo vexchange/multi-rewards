@@ -39,15 +39,15 @@ const getTimeConstraints = () => {
   return { duration, percent };
 }
 
-const getRequiredBalance = percent => {
-  const requiredBalance = Math.round(sumBy(POOLS, 'monthlyRate') / percent);
+const getRequiredBalance = (percent, network) => {
+  const requiredBalance = Math.round(sumBy(POOLS[network], 'monthlyRate') / percent);
 
   return ethers.BigNumber.from(requiredBalance);
 }
 
-const getCurrentVexBalance = async connex => {
+const getCurrentVexBalance = async (connex, network) => {
   const abi = find(IERC20.abi, { name: 'balanceOf' });
-  const account = connex.thor.account(REWARD_TOKEN);
+  const account = connex.thor.account(REWARD_TOKEN[network]);
   const method = account.method(abi)
 
   const { decoded } = await method.call(DISTRIBUTOR);
