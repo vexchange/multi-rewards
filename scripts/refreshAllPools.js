@@ -3,9 +3,15 @@ const ethers = require('ethers');
 const readlineSync = require('readline-sync');
 const consola = require('consola');
 
-const { DISTRIBUTOR, REWARD_TOKEN, POOLS } = require('../constants');
+const { REWARD_TOKEN, POOLS } = require('../constants');
 
-const { getConnex, getCurrentVexBalance, getRequiredBalance, getTimeConstraints } = require('./utils/')
+const {
+  getConnex,
+  getCurrentVexBalance,
+  getPoolState,
+  getRequiredBalance,
+  getTimeConstraints,
+} = require('./utils/')
 
 const setRewardsDuration = require('./setRewardsDuration');
 const notifyRewardAmount = require('./notifyRewardAmount');
@@ -41,23 +47,31 @@ const poolCheck = async () => {
 
   // iterate through pools
   for (const pool of POOLS[network]) {
+    const rewardAmount = (Math.round(pool.monthlyRate / percent)).toString();
+    const isPoolActive = await getPoolState(pool, connex, network);
+
+    // if pool hasn't launched
     if (!pool.address) {
-      consola.info('skipping: ', pool.pair);
+      consola.info(`Pool ${pool.pair } hasn\'t launched, skipping.`);
       continue;
     };
 
-    const rewardAmount = (Math.round(pool.monthlyRate / percent)).toString();
+    // if pool hasn't expired skip
+    if (isPoolActive) {
+      consola.info(`Pool ${pool.pair} is active, skipping.`);
+      continue;
+    }
 
-    // await setRewardsDuration({
-    //   connex,
-    //   duration,
-    //   network,
-    //   pool,
-    //   rewardToken: REWARD_TOKEN[network],
-    // });
-    //
-    // await connex.thor.ticker().next()
-    //
+    await setRewardsDuration({
+      connex,
+      duration,
+      network,
+      pool,
+      rewardToken: REWARD_TOKEN[network],
+    });
+
+    await connex.thor.ticker().next()
+
     await notifyRewardAmount({
       connex,
       network,

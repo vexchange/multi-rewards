@@ -8,6 +8,8 @@ const find = require('lodash/find');
 
 
 const IERC20 = require('../../build/contracts/IERC20.json');
+const MultiRewards = require('../../build/contracts/MultiRewards.json');
+
 
 const { DISTRIBUTOR, THIRTY_DAYS, REWARD_TOKEN, POOLS } = require('../../constants');
 
@@ -56,11 +58,23 @@ const getCurrentVexBalance = async (connex, network) => {
   return ethers.BigNumber.from(balance);
 }
 
+const getPoolState = async (pool, connex, network) => {
+  const rewardDataABI = find(MultiRewards.abi, { name: 'rewardData' });
+  const rewardDataMethod = connex.thor.account(pool.address).method(rewardDataABI);
+  const now = dayjs();
+
+  const { decoded } = await rewardDataMethod.call(REWARD_TOKEN[network]);
+  const periodFinish = dayjs(decoded.periodFinish);
+
+  return now.isBefore(periodFinish);
+}
+
 module.exports = {
   getConnex,
   getCurrentVexBalance,
   getRequiredBalance,
   getTimeConstraints,
+  getPoolState,
 };
 
 

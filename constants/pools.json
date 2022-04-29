@@ -56,16 +56,6 @@
       "pair": "vtho",
       "address": "0x64689451cebe062bed860cdbf6ead95e0e82ea50",
       "monthlyRate": 600
-    },
-    {
-      "pair": "vtho2",
-      "address": "0x0db8997631e48c4e79167978bfb3edac13a4a4ec",
-      "monthlyRate": 600
-    },
-    {
-      "pair": "vtho3",
-      "address": "0x79a94cf38611c2e492172011220875ec8c686365",
-      "monthlyRate": 600
     }
   ]
 }
