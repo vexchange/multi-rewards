@@ -1,5 +1,7 @@
 const ethers = require('ethers');
 const dayjs = require('dayjs');
+const utc = require('dayjs/plugin/utc');
+
 const ConnexDriver = require('@vechain/connex-driver');
 const Framework = require("@vechain/connex-framework").Framework;
 
@@ -10,12 +12,13 @@ const find = require('lodash/find');
 const IERC20 = require('../../build/contracts/IERC20.json');
 const MultiRewards = require('../../build/contracts/MultiRewards.json');
 
-
 const { DISTRIBUTOR, THIRTY_DAYS, REWARD_TOKEN, POOLS } = require('../../constants');
 
 const config = require('../deploymentConfig');
 
 const { Driver, SimpleNet, SimpleWallet } = ConnexDriver;
+
+dayjs.extend(utc);
 
 const getConnex = async (network) => {
   const wallet = new SimpleWallet();
@@ -32,9 +35,9 @@ const getConnex = async (network) => {
 }
 
 const getTimeConstraints = () => {
-  const end = dayjs().endOf('month').unix();
+  const end = dayjs().endOf('month').utc().unix();
 
-  const now = dayjs().unix();
+  const now = dayjs.utc().unix();
   const duration = end - now;
   const percent = (duration / THIRTY_DAYS) * 100;
 
@@ -61,10 +64,10 @@ const getCurrentVexBalance = async (connex, network) => {
 const getPoolState = async (pool, connex, network) => {
   const rewardDataABI = find(MultiRewards.abi, { name: 'rewardData' });
   const rewardDataMethod = connex.thor.account(pool.address).method(rewardDataABI);
-  const now = dayjs();
+  const now = dayjs.utc();
 
   const { decoded } = await rewardDataMethod.call(REWARD_TOKEN[network]);
-  const periodFinish = dayjs(decoded.periodFinish);
+  const periodFinish = dayjs.unix(decoded.periodFinish).utc();
 
   return now.isBefore(periodFinish);
 }
