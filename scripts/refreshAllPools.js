@@ -62,23 +62,31 @@ const poolCheck = async () => {
       continue;
     }
 
-    await setRewardsDuration({
-      connex,
-      duration,
-      network,
-      pool,
-      rewardToken: REWARD_TOKEN[network],
-    });
+    try {
+      await setRewardsDuration({
+        connex,
+        duration,
+        network,
+        pool,
+        rewardToken: REWARD_TOKEN[network],
+      });
+    } catch (error) {
+      consola.warn(error.msg);
+    }
 
     await connex.thor.ticker().next()
 
-    await notifyRewardAmount({
-      connex,
-      network,
-      pool,
-      rewardAmount: ethers.utils.parseEther(rewardAmount).toString(),
-      rewardToken: REWARD_TOKEN[network],
-    });
+    try {
+      await notifyRewardAmount({
+        connex,
+        network,
+        pool,
+        rewardAmount: ethers.utils.parseEther(rewardAmount).toString(),
+        rewardToken: REWARD_TOKEN[network],
+      });
+    } catch(error) {
+      consola.warn(error.msg);
+    }
   };
 
   process.exit(1)

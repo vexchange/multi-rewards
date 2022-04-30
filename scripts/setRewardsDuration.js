@@ -38,18 +38,17 @@ const setRewardsDuration = async ({
       const transaction = await connex.thor.transaction(txid).getReceipt();
 
       if (transaction.reverted) {
-        consola.error('Transaction was unsuccessful');
-
-        reject();
+        reject({
+          msg: 'Transaction was reverted | Duration already set?',
+          transaction,
+        });
       } else {
-        consola.success(`Successfully set duration`);
-        consola.log(' ');
-
-        resolve();
+        resolve({
+          msg: 'Successfully set duration',
+          transaction
+        });
       }
     } catch(error) {
-      consola.error(error);
-
       reject(error);
     }
   });

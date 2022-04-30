@@ -54,7 +54,17 @@
   "testnet": [
     {
       "pair": "vtho",
-      "address": "0x64689451cebe062bed860cdbf6ead95e0e82ea50",
+      "address": "0x8664769ab6fb566eebcdd43ba7353cb4bb5ffb73",
+      "monthlyRate": 600
+    },
+    {
+      "pair": "vtho2",
+      "address": "0xa415c1b34df377883ae396e110476e81e6216284",
+      "monthlyRate": 600
+    },
+    {
+      "pair": "vtho3",
+      "address": "0x3d842955b17e777366b15be7d3dad6d18fbfa4b5",
       "monthlyRate": 600
     }
   ]
