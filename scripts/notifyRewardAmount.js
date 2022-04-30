@@ -56,18 +56,17 @@ const notifyRewardAmount = async ({
       const transaction = await connex.thor.transaction(notifyRewardAmount.txid).getReceipt();
 
       if (transaction.reverted) {
-        consola.error('Transaction was unsuccessful');
-
-        reject();
+        reject({
+          msg: 'Transaction was reverted',
+          transaction,
+        });
       } else {
-        consola.success('Successfully notified reward amount');
-        consola.log(' ');
-
-        resolve();
+        resolve({
+          msg: 'Successfully notified rewards',
+          transaction
+        });
       }
     } catch(error) {
-      consola.error(error);
-
       reject();
     }
   });
