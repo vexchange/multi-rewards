@@ -1,6 +1,7 @@
 const ethers = require('ethers');
 const dayjs = require('dayjs');
 const utc = require('dayjs/plugin/utc');
+const timezone = require('dayjs/plugin/timezone');
 
 const ConnexDriver = require('@vechain/connex-driver');
 const Framework = require("@vechain/connex-framework").Framework;
@@ -19,6 +20,9 @@ const config = require('../deploymentConfig');
 const { Driver, SimpleNet, SimpleWallet } = ConnexDriver;
 
 dayjs.extend(utc);
+dayjs.extend(timezone);
+
+dayjs.tz.setDefault("UTC");
 
 const getConnex = async (network) => {
   const wallet = new SimpleWallet();
@@ -35,13 +39,13 @@ const getConnex = async (network) => {
 }
 
 const getTimeConstraints = () => {
-  const end = dayjs().endOf('month').utc().unix();
+  const end = dayjs().add(1, 'month').endOf('month').subtract(4, 'hours').unix();
 
   const now = dayjs.utc().unix();
   const duration = end - now;
-  const percent = (duration / THIRTY_DAYS) * 100;
+  const ratio = duration / THIRTY_DAYS;
 
-  return { duration, percent };
+  return { duration, ratio };
 }
 
 const getRequiredBalance = (percent, network) => {

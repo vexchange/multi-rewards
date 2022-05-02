@@ -33,11 +33,13 @@ const poolCheck = async () => {
   const connex = await getConnex(network);
 
   // get time constraints
-  const { duration, percent } = getTimeConstraints();
+  const { duration, ratio } = getTimeConstraints();
+  console.log(duration, ratio)
+  return;
 
   // check balance of distributor
   const currentBalance = await getCurrentVexBalance(connex, network);
-  const requiredBalance = getRequiredBalance(percent, network);
+  const requiredBalance = getRequiredBalance(ratio, network);
 
   if (currentBalance.lt(requiredBalance)) {
     consola.error('Distributor does not have proper balance');
@@ -47,7 +49,7 @@ const poolCheck = async () => {
 
   // iterate through pools
   for (const pool of POOLS[network]) {
-    const rewardAmount = (Math.round(pool.monthlyRate / percent)).toString();
+    const rewardAmount = (Math.round(pool.monthlyRate * ratio)).toString();
     const isPoolActive = await getPoolState(pool, connex, network);
 
     // if pool hasn't launched
