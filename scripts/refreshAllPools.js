@@ -34,8 +34,6 @@ const poolCheck = async () => {
 
   // get time constraints
   const { duration, ratio } = getTimeConstraints();
-  console.log(duration, ratio)
-  return;
 
   // check balance of distributor
   const currentBalance = await getCurrentVexBalance(connex, network);
@@ -43,6 +41,7 @@ const poolCheck = async () => {
 
   if (currentBalance.lt(requiredBalance)) {
     consola.error('Distributor does not have proper balance');
+    console.info(`A balance of: ${requiredBalance.toString()} is required`);
 
     process.exit(1);
   }
