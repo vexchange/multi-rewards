@@ -1,93 +1,100 @@
 // ES5 style
-const config = require("./deploymentConfig");
-const thorify = require("thorify").thorify;
-const Web3 = require("web3");
-const Multirewards = require(config.pathToMultirewardsJson);
-const IERC20 = require(config.pathToIERC20Json);
-const assert = require('assert');
+const find = require('lodash/find');
 const readlineSync = require('readline-sync');
+const consola = require('consola');
+const ethers = require('ethers');
 
-let network = null;
-let multirewardsAddress = null;
-let rewardTokenAddress = null;
-let rewardAmount = null;
+const Multirewards = require('../build/contracts/MultiRewards.json');
+const IERC20 = require('../build/contracts/IERC20.json');
 
-if (process.argv.length < 6)
-{
-    console.error("Usage: node scripts/notifyRewardAmount [mainnet|testnet] [Multirewards address] [Reward token address] [Reward amount (excluding 18 decimals)]");
-    process.exit(1);
-}
-else
-{
-    network = config.network[process.argv[2]];
-    if (network === undefined) {
-        console.error("Invalid network specified");
-        process.exit(1);
-    }
+const { getConnex } = require('./utils');
 
-    multirewardsAddress = process.argv[3];
-    rewardTokenAddress = process.argv[4];
-    rewardAmount = Web3.utils.toWei(process.argv[5]);
-}
+const notifyRewardAmount = async ({
+  connex,
+  pool,
+  network,
+  rewardAmount,
+  rewardToken,
+}) => {
+  const approveABI = find(IERC20.abi, { name: 'approve' });
+  const approveMethod = connex.thor.account(rewardToken).method(approveABI);
 
-const web3 = thorify(new Web3(), network.rpcUrl);
-web3.eth.accounts.wallet.add(config.privateKey);
+  const notifyRewardAmountABI = find(Multirewards.abi, { name: 'notifyRewardAmount' });
+  const notifyRewardAmountMethod = connex.thor.account(pool.address).method(notifyRewardAmountABI);
 
-notifyRewardAmount = async() =>
-{
-    // This is the address associated with the private key
-    const walletAddress = web3.eth.accounts.wallet[0].address;
+  const approveClause = approveMethod.asClause(pool.address, rewardAmount);
+  const notifyRewardAmountClause = notifyRewardAmountMethod.asClause(rewardToken, rewardAmount);
 
-    console.log("Using wallet address:", walletAddress);
-    console.log("Using RPC:", web3.eth.currentProvider.RESTHost);
+  if (require.main === module && network === 'mainnet') {
+    const input = readlineSync.question("Confirm you want to execute this on the MAINNET? (y/n) ");
 
-    try
-    {
-        let transactionReceipt = null;
-        const multirewardsContract = new web3.eth.Contract(Multirewards.abi, multirewardsAddress);
-        const rewardTokenContract = new web3.eth.Contract(IERC20.abi, rewardTokenAddress);
+    if (input != 'y') process.exit(1);
+  }
 
-        console.log("Attempting ERC20 approve for transfer, amount:", rewardAmount);
+  consola.info(`--------------------- Notifying reward amount for: ${pool.pair} ---------------------`);
+  consola.info(`Reward token: ${rewardToken}`);
+  consola.info(`Reward amount: ${ethers.utils.formatEther(rewardAmount)}`);
+  consola.log(' ');
 
-        if (network.name == "mainnet")
-        {
-            let input = readlineSync.question("Confirm you want to execute this on the MAINNET? (y/n) ");
-            if (input != 'y') process.exit(1);
-        }
+  return new Promise(async (resolve, reject) => {
+    try {
+      consola.info('Approving amount...');
 
-        await rewardTokenContract
-                .methods
-                .approve(multirewardsAddress,
-                         rewardAmount)
-                .send({ from: walletAddress })
-                .on("receipt", (receipt) => {
-                    transactionReceipt = receipt;
-                });
+      const approve = await connex.vendor.sign('tx', [approveClause]).request();
 
-        console.log("Approve successful, tx hash:", transactionReceipt.transactionHash);
-        console.log("Attempting notifyRewardAmount for multireward address:", multirewardsAddress);
-        console.log("For staking token:", await multirewardsContract
-                                            .methods
-                                            .stakingToken()
-                                            .call());
+      consola.info('Transaction: ', approve.txid);
+      await connex.thor.ticker().next()
 
-        await multirewardsContract
-                .methods
-                .notifyRewardAmount(
-                    rewardTokenAddress,
-                    rewardAmount
-                )
-        .send({ from: walletAddress })
-        .on("receipt", (receipt) => {
-            transactionReceipt = receipt;
+      consola.log(' ');
+      consola.info('Notifying reward amount...');
+
+      const notifyRewardAmount = await connex.vendor.sign('tx', [notifyRewardAmountClause]).dependsOn(approve.txid).request();
+
+      consola.info('Transaction: ', notifyRewardAmount.txid);
+      await connex.thor.ticker().next()
+
+      const transaction = await connex.thor.transaction(notifyRewardAmount.txid).getReceipt();
+
+      if (transaction.reverted) {
+        reject({
+          msg: 'Transaction was reverted',
+          transaction,
         });
+      } else {
+        resolve({
+          msg: 'Successfully notified rewards',
+          transaction
+        });
+      }
+    } catch(error) {
+      reject();
+    }
+  });
+};
 
-        console.log("Transaction Hash:", transactionReceipt.transactionHash);
-    }
-    catch(error)
-    {
-        console.log("Execution failed with:", error)
-    }
+// if called directly (from terminal)
+if (require.main === module) {
+  const [network, multiRewards, rewardToken, rewardAmount] = process.argv.slice(2);
+
+  if (!network || !multiRewards || !rewardToken || !rewardAmount) {
+    consola.error("Usage: node scripts/notifyRewardAmount [mainnet|testnet] [Multirewards address] [Reward token address] [Reward amount (excluding 18 decimals)]");
+
+    process.exit();
+  }
+
+  (async() => {
+    const connex = await getConnex(network);
+
+    const result = await notifyRewardAmount({
+      connex,
+      multiRewards,
+      network,
+      rewardAmount,
+      rewardToken,
+    });
+
+    console.log(result)
+  })();
 }
 
-notifyRewardAmount();
+module.exports = notifyRewardAmount;

@@ -1,0 +1,66 @@
+{
+  "mainnet": [
+    {
+      "pair": "vex-vet",
+      "address": "0x538f8890a383c44e59df4c7263d96ca8048da2c7",
+      "monthlyRate": 387460
+    },
+    {
+      "pair": "wov-vet",
+      "address": "0xa8d1a1c88329320234581e203474fe19b99473d3",
+      "monthlyRate": 3000
+    },
+    {
+      "pair": "veed-vet",
+      "address": "0x40b0972f74d44da2b7a5a5817f81d38e293bce9f",
+      "monthlyRate": 5000
+    },
+    {
+      "pair": "veusd-vet",
+      "address": "0xf1be58861b4bcacd6c7d026ba3de994361f5d3aa",
+      "monthlyRate": 5000
+    },
+    {
+      "pair": "mvg-vet",
+      "address": "0x2ec0e35f377d6607516e7dbd8023b145bba3bd3b",
+      "monthlyRate": 2500
+    },
+    {
+      "pair": "sha-vet",
+      "address": "0x03e3dc7c1ce03679d4bf8b942a8e48c0175f26fe",
+      "monthlyRate": 2500
+    },
+    {
+      "pair": "hai-vet",
+      "address": "0xbf3d59a37d2f7894563b2f4b1e0d6551b64c15d6",
+      "monthlyRate": 2500
+    },
+    {
+      "pair": "oce-vet",
+      "address": "0x451257d6bf44f58861554eabb06d4616219beacb",
+      "monthlyRate": 1500
+    },
+    {
+      "pair": "jur-vet",
+      "address": "0xcc6c8c98d6c47133b0f13f8b234aaeb538437048",
+      "monthlyRate": 1500
+    }
+  ],
+  "testnet": [
+    {
+      "pair": "vtho",
+      "address": "0x8664769ab6fb566eebcdd43ba7353cb4bb5ffb73",
+      "monthlyRate": 600
+    },
+    {
+      "pair": "vtho2",
+      "address": "0xa415c1b34df377883ae396e110476e81e6216284",
+      "monthlyRate": 600
+    },
+    {
+      "pair": "vtho3",
+      "address": "0x3d842955b17e777366b15be7d3dad6d18fbfa4b5",
+      "monthlyRate": 600
+    }
+  ]
+}
